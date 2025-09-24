@@ -1,0 +1,77 @@
+#include <stdio.h>
+#define MAX 100  // stack boyutu
+
+int stack[MAX];
+int top = -1; // başlangıçta boş
+
+// push: stack'e eleman ekle
+void push(int value) {
+    if (top == MAX - 1) {
+        printf("Stack dolu, eklenemedi!\n");
+    } else {
+        stack[++top] = value;
+        printf("%d eklendi.\n", value);
+    }
+}
+
+// pop: stack'ten eleman çıkar
+void pop() {
+    if (top == -1) {
+        printf("Stack bos!\n");
+    } else {
+        printf("%d cikartildi.\n", stack[top--]);
+    }
+}
+
+// peek: en üstteki elemanı göster
+void peek() {
+    if (top == -1) {
+        printf("Stack bos!\n");
+    } else {
+        printf("En ustteki eleman: %d\n", stack[top]);
+    }
+}
+
+// stack'i yazdır
+void display() {
+    if (top == -1) {
+        printf("Stack bos!\n");
+    } else {
+        printf("Stack: ");
+        for (int i = 0; i <= top; i++) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n1. Push\n2. Pop\n3. Peek\n4. Display\n5. Cikis\n");
+        printf("Seciminizi yapin: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Eklenecek sayiyi girin: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                peek();
+                break;
+            case 4:
+                display();
+                break;
+            case 5:
+                return 0;
+            default:
+                printf("Gecersiz secim!\n");
+        }
+    }
+}
